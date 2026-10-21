@@ -56,7 +56,7 @@ Read relevant compatibility and architecture context:
 - `docs/roadmap/0.1/README.md`
 - `docs/roadmap/architecture.md`
 - The logical-identity-versus-SQLite-identity section of
-  `docs/research/vision/layerfs:ai-native-file-system.md`
+  `docs/research/vision/layerfs-ai-native-file-system.md`
 - Current schema/admission/publication and public reader implementation.
 - `docs/roadmap/0.2/agent-branch-reconciliation/README.md` and relevant current-model
   constraints, distinguishing future reconciliation from present behavior.
