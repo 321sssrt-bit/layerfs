@@ -10,7 +10,8 @@ const dshRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const clientDir = join(dshRoot, 'packages', 'client');
 // `||`, not `??`: an empty DSH_SOURCE takes the default, like `${DSH_SOURCE:-...}`.
 const dshSource = resolve(
-  process.env.DSH_SOURCE || join(clientDir, '..', '..', '..', '..', 'deepseek-harness'),
+  clientDir,
+  process.env.DSH_SOURCE || '../../../../deepseek-harness',
 );
 const hint = `set DSH_SOURCE to a built deepseek-harness checkout (looked in ${dshSource})`;
 const packageJson = join(dshSource, 'node_modules', 'tsdown', 'package.json');
@@ -29,6 +30,8 @@ if (!existsSync(cli)) {
 
 const result = spawnSync(process.execPath, [cli, ...process.argv.slice(2)], {
   cwd: clientDir,
+  // The CLI and its config must use the same checkout, including for empty input.
+  env: { ...process.env, DSH_SOURCE: dshSource },
   stdio: 'inherit',
 });
 if (result.error) throw result.error;
